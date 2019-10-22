@@ -1,0 +1,209 @@
+\section{Funci\'on escal\'on (Heaviside)}
+
+Usamos la notaci\'on $u$ por "unitario", por ser "un" escal\'on, o $h$ por \emph{Heavside}.
+
+%Acá va la gráfica de Heaviside, y una muestra de como queda simplificada (con la línea pintada en lugar de punteada, como si no fuera una función).
+
+$$
+u(t) = \lbrace{ \begin{matrix}
+0 \textrm{ si } t \leq 0 \\
+1 \textrm{ si } t > 0
+\end{matrix} }
+$$
+
+%Colocar los gráficos de ejemplo de las siguientes funciones:
+
+$$f(t) = t^2u(t)$$
+$$g(t) = t^2u(t+1)$$
+$$h(t) = t^2u(1-t)$$
+$$z(t) = t^2(u(t) - u(t-1))$$ %Es un peldaño
+%Graficar la formula general u(t-a) - u(t- b) que es una onda cuadrada, que solo grafica de a hasta b.
+$$w(t) = (t-1)^2 u(t-1)$$ 
+
+\begin{definition}
+(Transformada de Laplace) Sea $f: \mathcal{D}_f \subset \mathbb{R} \rightarrow \mathbb{R}$, se llama Transformada de Laplace (TL) de la funci\'on $f$ y se escribe $\mathcal{L}(f)(p) = \int_{0}^{\infty}e^{-pt}f(t)dt$ (si existe).
+\end{definition}
+
+Esto lo que nos dice que es que tenemos una funci\'on $f$, con una variable (por ejemplo $t$), que al ser evaluada por $\mathcal{L}$ tenemos una nueva funci\'on (llamada $F$) que tiene una nueva variable $p$.
+
+%Colocar un ejemplo de una función, con una flecha que muestre que tiende  aun nuevo grafico de F.
+
+Si la integral existe, entonces $f$ es $\mathcal{L}$-transformable (en caso contrario no tiene TL).
+\emph{Observaci\'on}: la "cola izquierda" (si la tiene) de $f$ no se tiene en cuenta, as\'i que tenemos
+$$
+\int_{0}^{\infty}e^{-pt}f(t)u(t)dt
+$$
+
+Veamos un ejemplo de TL.
+
+%Poner encima del singo igual "def"
+$$
+U(p) = \int_0^{\infty}e^{-pt}u(t)dt
+$$
+Como $u(t)$ vale 1 donde estoy integrando,
+$$
+= \int_0^{\infty}e^{-pt}dt = (-\frac{1}{p}e^{-pt})\|^{\infty}_0
+$$
+Como $p > 0$
+$$
+= (-\frac{1}{p}\left[0 - 1\right] = \frac{1}{p})
+$$
+
+Tenemos que pensar a $p$ como una constante que va a seguir viva luego de la integraci\'on y a $t$ como nuestra variable. La TL de $U(t)$ se define para $p>0$, y esto va a aparecer en la tabla de Laplace.
+
+\emph{Observaci\'on} Una condici\'on suficiente para que existe la TL, es que la funci\'on $f$ sea continua por partes (CPP), y de orden $\alpha$-exponencial\footnote{Esto significa que si tiene discontinuidades, los saltos son finitos (no hay un salto infinito) y que se la puede acotar a partir de un cierto $t$ por una exponencial del tipo $e^{\alpha t}$, en tal caso, por lo menos se puede asegurar que la TL existe para $p > \alpha$}.
+
+%%Hacer grafico explicativo con una función f(t) con una exponencial por encima y poner lo siguiente
+$\|f(t)\| \leq M e^{\alpha t}$ ($M$ es un valor constante) %Verificar $\|f(t)\| \leq M e^{\alpha t}$%
+
+%%Hacer otro grafico que muestre que para la exponencial anterior, F(p) tiene una absisa de convergencia, es decir una linea vertical en \alpha que muestra que se grafica desde allí hacia la derecha.
+
+%%Colocar apéndice con tablas de Laplace
+
+Propiedades:
+
+\begin{enumerate}
+
+\item (Verificaci\'on de la transformada) Suponiendo que $f(t)u(t) \longrightarrow F(p)$ %colocar encima de la flecha TL
+$tf(t)u(t) \longrightarrow ?$ %colocar encima de la flecha TL, signo de pregunta en rojo
+Veamos:
+$$
+F(p)= \int_0^{\infty}e^{-pt}f(t)dt
+$$
+Derivamos esta funci\'on (en funci\'on de $p$)
+$$
+\frac{d}{dp}F(p) = \frac{d}{dp}\int_0^{\infty}e^{-pt}f(t)dt = \int_0^{\infty}\frac{d}{dp}(e^{-pt}f(t))dt
+$$
+Es decir, pensamos que nuestra integral es transparente a nuestra derivaci\'on, lo cual se debe a propiedades de continuidad que no se van a tocar. Suponemos que esto es verdad por el momento,
+$$
+= \int_0^{\infty}\frac{d}{dp}((-t) e^{-pt}f(t))dt = -F^{\prime}(p)
+$$
+Entonces $tf(t)u(t) \longrightarrow -F^{\prime}(p)$. %colocar encima de la flecha TL
+Tambi\'en se tiene, en general %%Poner todo esto en una tabla como en mi tesis
+$t^n f(t)u(t) \longrightarrow (-1)^n F^{(n)}(p)$.
+Por ejemplo: $tu(t) \longrightarrow -(\frac{1}{p}^{\prime}) = -(-\frac{1}{p^2}) = p^{-2}$.
+
+\item $f(t)u(t) \longrightarrow F(p)$, entonces $f^{\prime}(t) = ?$
+$$
+\mathcal{L}(f^{\prime}(p) = \int_0^{\infty}e^{-pt}f^{\prime}(t)dt
+$$%Colocar "def" encima de la flecha
+Integro por partes con $u = e^{-pt}$, $du = -p e^{-pt}dt$, $dv = f^{\prime}(t)dt$, $v = f(t)$
+$$
+=f(t)e^{-pt}\|^{\infty}_0 + \int_0^{\infty}pe^{-pt}f(t)dt = pF(p) - f(0)
+$$
+Entonces $f^{\prime}(t) = pF(p) - f(0)$. De ac\'a, se tiene que $f^{\prime\prime}(t) \longrightarrow p^2F(p)-pf(0)-f^{\prime}(0)$ %colocar encima de la flecha un TL
+Es decir, multiplicamos por $p$ lo que ya teniamos y le restamos lo que acabamos de derivar, en $0$. Para $f^{\prime\prime\prime}(t) \longrightarrow p^3F(p)-p^2f(0) - pf^{\prime}(0) -f^{\prime\prime}(0)$.
+
+\item $f(t)u(t) \longrightarrow F(p)$, entonces $e^{at}f(t)u(t) \longrightarrow ?$ %Colocar TL encima de la flecha.
+Calculamos:
+$$
+\mathcal{L}(e^{at}f(t)u(t))(p) =\int_0^{\infty}e^{-pt}e^{at}f(t)dt = \int_0^{\infty}e^{-(p-a)t}f(t)dt = F(p-a)
+$$
+$u(t)$ vale $1$ en el \'area de integraci\'on. Entonces $e^{at}f(t)u(t) \longrightarrow F(p-a)$.
+
+Con la propiedad anterior, podemos por definici\'on de $\cosh$ y $\sinh$:
+$$
+\cosh{at} = \frac{1}{2}(e^{at} + e^{-at}) \longrightarrow \frac{1}{2}(\frac{1}{p-a} + \frac{1}{p+a}) = \frac{p}{p^2-a^2},p>\|a\|
+$$ (esto \'ultima dado que por la primera fracci\'on, $p > a$ y por la segunda $p > -a$). %Colocar TL encima de la flecha
+$$
+\sinh{at} = \frac{1}{2}(e^{at} - e^{-at}) \longrightarrow \frac{1}{2}(\frac{1}{p-a} - \frac{1}{p+a}) = \frac{a}{p^2-a^2},p>\|a\|
+$$ (esto \'ultima dado que por la primera fracci\'on, $p > a$ y por la segunda $p > -a$). %Colocar TL encima de la flecha
+
+Podemos combinar propiedades:
+
+$$
+t e^{at} u(t) \longrightarrow -\frac{1}{p-a} = \frac{1}{(p-a)^2}
+$$ %Colocar TL encima de la flecha
+
+\end{enumerate}
+
+\section{Ejercicios}
+
+\begin{enumerate}
+
+\item Ejercicio 1
+\item Ejercicio 2
+\item Ejercicio 3 ...
+
+\end{enumerate}
+
+\section{Claves de correcci\'on}
+
+\begin{exercise}
+(2a)
+$$x = e^{t+1}$$
+$$x^{\prime} = e ^{t + 1} = x$$
+$$x = x^{\prime}$$
+Entonces: $x^{\prime} - x = 0$ EDO.
+
+\end{exercise}
+
+\begin{exercise}
+(2c)
+$$x = A \sin{t}$$
+$$x^{\prime} = A \cos{t}$$
+$$x^{\prime \prime} = - A \sin{t}$$
+Entonces: $x + x = x^{\prime \prime} = 0$.
+
+\end{exercise}
+
+\begin{exercise}
+(3e)
+
+Como nos piden verificar, solo derivamos y reemplazamos. Con $y = y(x)$ en la EDO $1^3 + x = x + 1 = y$, por lo tanto, cumple.
+$y = x + 1$ es soluci\'on particular (no hay par\'ametros libres).
+
+\end{exercise}
+
+\begin{exercise}
+(4) Incompleto.
+
+Consideramos $y^{\prime} = \frac{dy}{dx}$
+
+\end{exercise}
+
+\begin{exercise}
+(7h) Considerando $y^{\prime} + p(x)y = q(x)$
+$$y \longrightarrow 1$$
+$$x \longrightarrow \infty$$
+Tenemos
+$$x^{2}y^{\prime} + xy^{\prime} = y - 1$$
+$$(x^2 + x)y^{\prime} - y = -1$$
+$$y^{\prime} - \frac{1}{x^2 + x}y = - \frac{1}{x^2 + x}$$
+Tomamos las funciones
+$$g(x) = - \frac{1}{x^2 + x}$$
+$$f(x) = - \frac{1}{x^2 + x}$$
+Por \emph{factor integrante},
+$$\mu(x) = e ^{\int{- \frac{1}{x^2 + x}dx}}$$
+
+C\'alculo auxiliar.
+
+$$
+{\int{- \frac{1}{x^2 + x}dx}} = 
+{\int{- \frac{1}{x(x + 1)}dx}} =
+{\int{(\frac{A}{x} + \frac{B}{x+1})dx}} =
+{\int{(\frac{A(x+1) + BX}{x(x+1)}})dx}
+$$
+$$
+A(x+1) + Bx = 1 
+$$
+Uso $x = 0$, entonces $A = 1$. Si $x = -1$, entonces $B = -1$
+$$
+={\int{(\frac{1}{x} + \frac{1}{x+1})dx}}
+=\ln{x}-\ln{x+1}=ln{\frac{x}{x+1}}
+$$
+
+Fin del c\'alculo auxiliar.
+
+Entonces
+$$
+\mu(x)=e^{-\ln{\frac{x}{x+1}}} = \frac{x}{x+1}^{-1} = \frac{x+1}{x} = 1 + \frac{1}{x}
+$$
+$$
+y = \frac{\int{-\frac{x+1}{x} \frac{1}{x^2 + x}}}{\frac{x+1}{x}}
+$$
+
+Partiendo de $(x^2 + x)y^{\prime} - y = 1$ entonces $(x^2 + x)\frac{dy}{dx} = y - 1$, entonces $\frac{dy}{y-1} = \frac{dx}{x^2 + x}$ y, entonces, $\ln{\|y-1\|} = \ln{\|\frac{x}{x+1}\|} + C_1$. Darnos cuenta de que son variables separadas nos da una ventaja m\'as grande. Una forma m\'as r\'apida es ver que si $x\longrightarrow \infty$, entonces dado que $y - 1 = k\frac{x}{x+1}$, entonces, si $y = 1 + k\frac{x}{x+1}$ nos queda $y = 1$. Y es f\'acil verificar entonces que $y^{\prime} = 0$ y cumple la condici\'on inicial.
+
+
+\end{exercise}
