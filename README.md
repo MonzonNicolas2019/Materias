@@ -1,5 +1,6 @@
-# Análisis Matemático 3
-Universidad Argentina De la Empresa
+# Apuntes
+
+Lo siguiente es una carpeta con algunos apuntes de materias que fui cursando en UADE y en UBA, usando LaTex.
 
 ### Instalación de entorno
 
