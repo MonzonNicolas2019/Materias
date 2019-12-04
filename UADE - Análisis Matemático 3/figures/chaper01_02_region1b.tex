@@ -1,0 +1,29 @@
+%h (here), le decimos que ponga la imagen m\'as o menos aqu\'i
+%t (top), preferiblemente en la parte superior de la p\'agina
+%b (bottom), preferiblemente en la parte inferior de la p\'agina
+%p (page), que junte los objetos flotantes en una p\'agina
+%! que ignore sus reglas internas de posicionamiento
+%H que ponga la imagen justo aqu\'i, similar a h!
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}
+    \begin{axis}[axis lines=middle,
+                xlabel=$x$,
+                ylabel=$y$,
+                enlargelimits,
+                ytick=\empty,
+                xtick={-1.479,3.62193},
+                xticklabels={$x_1$,$x_2$}]
+        \addplot[name path=H,black,domain={-4:4}] {-(1/6)*x^2+x+2.5} node[pos=1, below]{$h$};
+
+        \addplot[name path=G,black,domain={-4:4}] {0.3*x^2}node[pos=1, above]{$g$};
+
+        \addplot[pattern=north west lines, pattern color=brown!50]fill between[of=H and G, soft clip={domain=-1.479:3.62193}]
+        ;
+        \node[coordinate,pin=60:{$A$}] at (axis cs:1.1,1.6){};
+
+    \end{axis}
+\end{tikzpicture}
+\caption{Regi\'on Tipo 1 ejemplo II}
+\label{fig:chaper01_02_region1b}
+\end{figure}

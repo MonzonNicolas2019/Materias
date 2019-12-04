@@ -1,12 +1,108 @@
 \section{Integral doble sobre rect\'angulos}
 
-Sea $f: \mathcal{D} \subseteq \mathbb{R}^2 \rightarrow \mathbb{R}$, $z = f(x,y)$ y sea $\mathcal{R} \subset \mathcal{D}$ un rect\'angulo, se lo puede definir como
+\begin{definition}
+(Integral doble) Sea $f: \mathcal{D} \subseteq \mathbb{R}^2 \rightarrow \mathbb{R}$, $z = f(x,y)$ y sea $\mathcal{R} \subset \mathcal{D}$ un rect\'angulo, se lo puede definir como
 $$
 \mathcal{R} = \left[a,b\right] \times \left[c,d\right] = \lbrace (x,y) \in \mathbb{R}^2: a \leq x \leq b, c \leq y \leq d \rbrace
 $$
-Teniendo $f(x,y) \geq 0 \forall(x,y) \in \mathcal{R}$. Sea el macizo $M = \lbrace (x,y,z) \in \mathbb{R}^3: (x,y) \in \mathcal{R},0 \leq z\leq f(x,y)$
+Teniendo $f(x,y) \geq 0$ $\forall(x,y) \in \mathcal{R}$. Sea el macizo $M = \lbrace (x,y,z) \in \mathbb{R}^3: (x,y) \in \mathcal{R},0 \leq z\leq f(x,y)$. Entonces $A(\mathcal{R}_{ij}) = \Delta x \Delta y$.
+\end{definition}
 
+\input{figures/chaper01_01_Riemann_double_integral}
 
+En la Figura\footnote{Imagen extraída del sitio de \href{https://instruct.math.lsa.umich.edu/lecturedemos/ma215/docs/15_1/examples.html}{University of Michigan}} \ref{fig:chaper01_01_Riemann_double_integral}, se representa la funci\'on $f(x,y) = (3-x)(3-y)^2$ delimitada por una regi\'on cuadrada que va de $\left[1,2\right]$ a $\left[0,2\right]$ (nuestro $\mathcal{R}$, por definici\'on). Dividimos el intervalo de $\left[1,2\right]$ en subintervalos $\Delta x$ y el intervalo $\left[0,2\right]$ en subintervalos $\Delta y$. De esta forma obtenemos un cuadr\'icula, que si adem\'as, a cada cuadril\'atero formado le añadimos una altura $f(C_{ij})$ (con $C_{ij} \in \mathcal{R}_{ij}$), siendo $C_{ij}$ un cuadril\'atero arbitrario de la cuadr\'icula formada, obtenemos un prisma cuadrangular de un volumen $V(V_{ij})=f(C_{ij})\Delta x \Delta y$. La suma de estos volumenes de prismas cuadrangulares nos da una aproximaci\'on del volumen bajo la curva, siendo m\'as exacto a mayor cantidad de cuadril\'ateros en la cuadr\'icula (ver archivo \path{extra/Riemann_double_integral_animation.gif}). A este volumen lo llamaremos \emph{volumen del macizo}.
+
+En palabras m\'as simples, se utiliza la misma idea de sumar infinit\'esimos en integrales simples, pero para integrales dobles estaremos usaando rect\'angulos de $\Delta x$, $\Delta y$, que se aproximen a cero. Esto lo podemos expresar como:
+$$
+V(M)\cong \sum_{i=1}^{n}\sum_{j=1}^{m}f(C_{ij})\Delta x \Delta y
+$$
+$$
+V(M) = \lim\limits_{n,m\longrightarrow \infty}\sum_{i=1}^{n}\sum_{j=1}^{m}f(C_{ij})\Delta x \Delta y
+$$
+Donde $M$ es el macizo.
+
+Esto aplicado $\forall C_{ij}$ se denomina integral doble en $\mathbb{R}$ y se simboliza de la siguiente manera:
+$$
+I(f,\mathcal{R}) = \iint\limits_{\mathcal{R}}f(x,y)dxdy
+$$
+Donde $dxdy$ y $dydx$ son iguales ya que los diferenciales no tienen ning\'un orden de prioridad, y $\mathcal{R}$ es la regi\'on de integraci\'on.
+
+\emph{Ejemplo}: Ejercicio 1c.
+
+\section{Teorema de Fubini}
+
+\begin{theorem}
+
+Sea $f:\mathcal{D} \subseteq \mathbb{R}^2 \rightarrow \mathbb{R}$, $z=f(x,y)$ integrable en $\mathcal{R}=\left[a,b\right]\times\left[c,d\right]$
+\begin{itemize}
+
+\item Si existe $\int\limits_c^d f(x,y)dy$ $\forall x \in \left[a,b\right]$ entonces $\int\limits_a^b \left[ \int\limits_c^d f(x,y)dy \right] dx$ existe y
+$$
+\int\limits_a^b \int\limits_c^d f(x,y)dydx =
+\iint_{\mathcal{R}}f(x,y)dxdy
+$$
+
+\item Si existe $\int\limits_c^d f(x,y)dx$ $\forall y \in \left[c,d\right]$ entonces $\int\limits_c^d \left[ \int\limits_a^b f(x,y)dx \right] dy$ existe y
+$$
+\int\limits_c^d \int\limits_a^b f(x,y)dxdy =
+\iint_{\mathcal{R}}f(x,y)dxdy
+$$
+
+\item Si ambas condiciones se cumplen
+$$
+I(f, \mathcal{R}) = \iint_{\mathcal{R}}f(x,y)dxdy =
+\int\limits_a^b \int\limits_c^d f(x,y)dydx =
+\int\limits_c^d \int\limits_a^b f(x,y)dxdy
+$$
+
+\end{itemize}
+
+\end{theorem}
+
+\emph{Ejemplo}: Ejercicio 1a.
+
+\section{Integrales dobles en un recinto general}
+
+Vamos a llamar \emph{Regi\'on de Tipo 1} (informalmente) a las regiones encerradas por dos funciones de la forma en que se muestra en las Figuras~\ref{fig:chaper01_02_region1a} y ~\ref{fig:chaper01_02_region1b}.
+
+\input{figures/chaper01_02_region1a}
+
+\input{figures/chaper01_02_region1b}
+
+En este tipo de regiones, la regi\'on se puede describir de la siguiente manera:
+$$
+\mathcal{R} = \lbrace (x,y) \in \mathbb{R}^2: a \leq x \leq b, g(x) \leq y \leq h(x) \rbrace
+$$
+$$
+I(f, \mathcal{R}) = \iint\limits_\mathcal{R} f(x,y) dxdy = \int\limits_a^b \int\limits_{g(x)}^{h(x)}f(x,y)dxdy
+$$
+Es importante el orden de $h(x)$ y de $g(x)$ en la integral.
+
+\begin{example}
+
+Calcular la integral 
+$$
+\int\limits_\mathcal{R} (x + 2y) dxdy
+$$
+teniendo en cuenta la regi\'on ilustrada en la Figura \ref{chaper01_02_region1_example_a}.
+
+\input{figures/chaper01_02_region1_example_a}
+
+\emph{Resoluci\'on}
+
+\begin{equation*}
+	\begin{split}
+		\int\limits_{-1}^1 \int\limits_{2x^2}^{1+x^2} (x+2y) dy dx &= \int\limits_{-1}^1 \left. xy + y^2 \right|^{1+ x^2}_{2x^2} dx \\
+		&= \int\limits_{-1}^1 x(1+x^2)^2 -x(2x^2) - (2x^2)^2 dx \\
+		&= \int\limits_{-1}^1 1 + x + 2x^2 - x^3 - 3x^4 dx \\
+		&= \left. x + \frac{1}{2}x^2 + \frac{2}{3}x^3 -\frac{1}{4}x^4 - \frac{3}{5} x^5 \right|^1_{-1} \\
+		&= \frac{68}{15}
+	\end{split}
+\end{equation*}
+
+\end{example}
+
+Vamos a llamar \emph{Regi\'on de Tipo 2} (informalmente) a las regiones encerradas por dos funciones de la forma en que se muestra en las Figuras~\ref{fig:chaper01_02_region2a} y ~\ref{fig:chaper01_02_region2b}.
 
 \section{Ejercicios}
 
@@ -23,8 +119,39 @@ Teniendo $f(x,y) \geq 0 \forall(x,y) \in \mathcal{R}$. Sea el macizo $M = \lbrac
 
 \begin{exercise}
 
-(1a)\\
-Respuesta a realizar.
+(1a)
+
 \input{figures/exercice_01_a_01}
+
+$$
+I(f,\mathcal{R}) = \int\limits_0^1 \int\limits_0^2 3x^2+2y dxdy =
+\int\limits_0^1 \left. 3x^2 y + y^2 \right|_0^2 dx =
+\int\limits_0^1 6x^2 + 4 - 0 dx =
+\left. 2x^3+ 4x \right|_0^1 = 6
+$$
+
+\end{exercise}
+
+\begin{exercise}
+
+(1c) Imaginemos una cuadr\'icula de cuadril\'ateros infinitamente pequeños. Lo que buscamos encontrar es si estos corresponden a un racional o a un no racional, por cada uno de estos cuadril\'ateros.
+
+\begin{itemize}
+
+\item $C_{ij}=(x_i,j_i),x_i \in \mathbb{Q},f(C_{ij})=0$
+$$
+\lim\limits_{n,m \longrightarrow \infty}\sum_{i=1}^{n}\sum_{j=1}^{m}0\Delta x \Delta y = 0
+$$
+
+\item $C_{ij}=(x_i,j_i),x_i \not\in \mathbb{Q},f(C_{ij})=1$
+$$
+\lim\limits_{n,m \longrightarrow \infty}\sum_{i=1}^{n}\sum_{j=1}^{m}1\Delta x \Delta y = 3
+$$
+
+El segundo \'item da 3 debido a que la suma de todos los cuadril\'ateros infinitamente pequeños son equivalentes a sacar su \'area de la f\'ormula de la multiplicaci\'on de base por altura ($1\times 3$).
+
+En este caso, no existe el \'area de la regi\'on de esos requisitos, dado que los l\'imites son diferentes. Si $f$ es una funci\'on continua o es acotada con una cantidad finita de discontinuidades, entonces s\'i es integrable.
+
+\end{itemize}
 
 \end{exercise}

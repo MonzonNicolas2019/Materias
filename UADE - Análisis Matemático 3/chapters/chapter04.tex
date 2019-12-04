@@ -20,6 +20,8 @@ $$z(t) = t^2(u(t) - u(t-1))$$ %Es un peldaño
 %Graficar la formula general u(t-a) - u(t- b) que es una onda cuadrada, que solo grafica de a hasta b.
 $$w(t) = (t-1)^2 u(t-1)$$ 
 
+\section{Transformada de Laplace}
+
 \begin{definition}
 (Transformada de Laplace) Sea $f: \mathcal{D}_f \subset \mathbb{R} \rightarrow \mathbb{R}$, se llama Transformada de Laplace (TL) de la funci\'on $f$ y se escribe $\mathcal{L}(f)(p) = \int_{0}^{\infty}e^{-pt}f(t)dt$ (si existe).
 \end{definition}
@@ -115,6 +117,10 @@ $$
 t e^{at} u(t) \longrightarrow -\frac{1}{p-a} = \frac{1}{(p-a)^2}
 $$ %Colocar TL encima de la flecha
 
+\item (Desplazamiento de la original)
+
+Aca poner lo de las fotos del celu (Lo que escribi\o el profesor en hojas verdes de UADE)
+
 \end{enumerate}
 
 \section{Ejercicios}
@@ -148,6 +154,27 @@ Entonces: $x + x = x^{\prime \prime} = 0$.
 \end{exercise}
 
 \begin{exercise}
+(2f) Derivamos dos veces para conseguir dos consntantes. La ecuaci\'on diferencial de esa familia ($x = x(t)$).  Derivamos dos veces la familia y eliminamos $c_1$ y $c_2$ (respecto de $t$).
+
+$$
+\frac{1}{x}x^{\prime} = 2c_1t
+$$
+y entonces
+$$
+\frac{x^{\prime\prime}x - x^{\prime^2}}{x^2} = 2c_1
+$$
+
+La ED es
+
+$$
+\frac{x^{\prime}}{x} = \frac{x^{\prime\prime}x - x^{\prime^2}}{x^2}t
+$$
+
+Como no se pide nada m\'as, no continuamos.
+
+\end{exercise}
+
+\begin{exercise}
 (3e)
 
 Como nos piden verificar, solo derivamos y reemplazamos. Con $y = y(x)$ en la EDO $1^3 + x = x + 1 = y$, por lo tanto, cumple.
@@ -159,6 +186,47 @@ $y = x + 1$ es soluci\'on particular (no hay par\'ametros libres).
 (4) Incompleto.
 
 Consideramos $y^{\prime} = \frac{dy}{dx}$
+
+\end{exercise}
+
+\begin{exercise}
+
+(6h)
+
+$$
+x^{-2}x^1 + \frac{1}{x} = t
+$$
+Para la sustituci\'on
+$$
+y^{\prime}(t) = -\frac{1}{x^2}x^{\prime}
+$$
+
+$$
+-y^{\prime}(t) + y(t) = t
+$$
+
+$$
+y^{\prime}(t) - y(t) = -t
+$$
+
+Factor integrante $\mu(t)=e^{-\int dt}  =e^{-t} \neq 0$, $\forall t \in  \mathbb{R}$. Multiplicando por $e^{-t}$:
+
+$$
+e^{-t}y^{\prime}(t) - e^{-t}y(t) = -te^{-t}
+$$
+
+$$
+(e^{-t}y(t))^{\prime} = -te^{-t}
+$$
+
+Pero si esto se cumple, entonces tenemos una primitiva tal que
+
+$$
+e^{-t}y(t) = -\int te^{-t}dt = t e^{-t} + e^{-t} + c
+$$
+
+Finalmente, $y: \mathbb{R} \rightarrow \mathbb{R}$, $y(t) = t + 1 + ce^t$ de modo que la CI dice que $y(1) = 1$, entonces debe pasar que $1 + 1 + ce = 1$ entonces $c = -\frac{1}{e}$ de modo que $y: \mathbb{R} \rightarrow \mathbb{R}$, $y(t) = t + 1 - \frac{1}{e}e^t$. Pero lo que nos piden es $x$, entonces:
+$I \subset \mathbb{R} \rightarrow \mathbb{R}$, $x(t) = \frac{1}{1 + t - \frac{1}{e}e^t}$.
 
 \end{exercise}
 
@@ -205,5 +273,256 @@ $$
 
 Partiendo de $(x^2 + x)y^{\prime} - y = 1$ entonces $(x^2 + x)\frac{dy}{dx} = y - 1$, entonces $\frac{dy}{y-1} = \frac{dx}{x^2 + x}$ y, entonces, $\ln{\|y-1\|} = \ln{\|\frac{x}{x+1}\|} + C_1$. Darnos cuenta de que son variables separadas nos da una ventaja m\'as grande. Una forma m\'as r\'apida es ver que si $x\longrightarrow \infty$, entonces dado que $y - 1 = k\frac{x}{x+1}$, entonces, si $y = 1 + k\frac{x}{x+1}$ nos queda $y = 1$. Y es f\'acil verificar entonces que $y^{\prime} = 0$ y cumple la condici\'on inicial.
 
+\end{exercise}
+
+\begin{exercise}
+
+(10b) Despejo de (1) la variable $y = 2x - \dot{x} -3$, reemplazando en (2) es $2\dot{x} - \ddot{x} = -x + 4x - 2\dot{x} - 6$ entonces queda $\ddot{x} - 4\dot{x} + 3x - 6$ entonces una ecuaci\'on diferencial completa de 2° orden con coeficientes constantes 
+
+(a) la homog\'enea es $\ddot{x} - 4\dot{x} + 3x = 0$, ecuaci\'on caracter\'istica $\lambda ^2  4\lambda + 3 = 0$, $\sigma = \lbrace \lambda_1 = 1, \lambda_2 = 3$. Soluci\'on de la homog\'enea $x_h(t) = c_1e^t + c_2e^{3t}$.
+
+(b) Una soluci\'on particular $x_p(t) = k_1$ con $k_1$ tal que $0 - 4(0) + 3k_1 = 6$, $k_1 = 2$. La soluci\'on particular es $x_p(t)=2$.
+
+(c) La soluci\'on general es $x(t) = c_1e^t + c_2e^{3t} + 2$.
+
+Ahora $y = 2c_1e^t + 2c_2e^{3t} + 4 - (c_1e^t + 3c_2e^{3t}) - 3 = c_1 e^t - c_2e^{3t} + 1$ (Aca poner una llave por debajo que muestre que $2x = y = 2c_1e^t + 2c_2e^{3t} + 4$  y $\dot{x} = c_1e^t + 3c_2e^{3t}$).
+
+La soluci\'on general
+
+%\usepackage{amsmath}
+\begin{equation}
+\begin{cases}
+	x(t) = c_1e^t + c_2e^{3t} + 2 \\
+	y(t) = c_1e^t - c_2e^{3t} + 1	
+\end{cases}
+\end{equation}
+
+%Flecha que diga CI por Condiciones Iniciales
+
+\begin{equation}
+\begin{cases}
+	c_1 + c_2 + 2 = 2 \\
+	c_1 - c_2 + 1 = 1
+\end{cases}
+\end{equation}
+
+%Flecha
+
+$$
+c_1 = c_2 = 0
+$$
+
+Finalmente, la soluci\'on del problema es
+
+\begin{equation}
+\begin{cases}
+	x: \mathbb{R} \rightarrow \mathbb{R}, x(t) = 2 \\
+	y: \mathbb{R} \rightarrow \mathbb{R}, y(t) = 1
+\end{cases}
+\end{equation}
+
+\end{exercise}
+
+\begin{exercise}
+
+(Problema de parcial, con enunciado) Dada la familia $\Phi = \lbrace (x,y) \in \mathbb{R}^2 : kx^2 + 1 - y = 0 \rbrace$ hallar la familia de trayectorias ortogonales $\Psi$ y la ecuaci\'on de la \'unica curva $C \in \Phi$ que pasa por $P_0 = (\sqrt{2}, 0)$ y graficarla.
+
+\emph{Respuesta}
+
+La familia $\Phi$ es una familia de par\'abolas de ecuaci\'on $y = 1 + kx^2$.
+
+(1) Derivo la familia original y elimino $k$.
+\begin{equation}
+\begin{cases}
+	y = 1 + kx^2 \\
+	y^{\prime} = 2kx
+\end{cases}
+\end{equation}
+
+Eliminando $k$ queda $\frac{y - 1}{y^{\prime}} = \frac{x}{2}$.
+
+(2) Transformamos a la ecuaci\'on diferencial de la familia $\Psi$.
+
+$$
+-(y-1)y^{\prime} = \frac{x}{2}
+$$
+
+(3) Resolvemos la ecuaci\'on anterior
+
+$$
+-(y-1)\frac{dy}{dx} = \frac{x}{2}
+$$
+
+O bien
+
+$$
+\frac{x}{2}dx + (y-1) dy = 0
+$$
+
+$$
+d\left[ \frac{x^2}{4} + \frac{1}{2}(y-1)^2\right] = 0
+$$
+
+Entonces
+
+$$
+\frac{x^2}{4} + \frac{(y-1)^2}{2} = 0
+$$
+
+Es decir, la familia de las curvas ortogonales son todas elipses. %Colocar dibujo de varias elipses y varias curvas para que se vea que se cortan ortogonalmente
+
+¿Cu\'anto vale $c$ para que $\frac{x^2}{4} + \frac{(y-1)^2}{2} = c$ pase por $(\sqrt{2}, 0)$? Reemplazamos y nos queda $c = 1$.
+
+Luego la elipse es
+
+$$
+\frac{x^2}{4} + \frac{(y-1)^2}{2} = 1
+$$
+
+Al final del pizarr\'on hab\'ia una nota que dec\'ia "Cambiar $y^{\prime}$ por $\frac{1}{y^{\prime}}$".
+
+\end{exercise}
+
+\begin{exercise}
+
+(Ejercicio de parcial)
+
+\begin{equation}
+\begin{cases}
+	\dot{x} = 2x - y + 1 & (1) \\
+	\dot{y} = 2x - y + 2 & (2)
+\end{cases}, x(0) = y(0) = 2
+\end{equation}
+
+\emph{Respuesta}
+
+De la ecuaci\'on (1) despejo $y = 2x - \dot{x} + 1$ y reemplazo en (2)
+$$
+2\dot{x} - \ddot{x} = 2x - 2x + \dot{x} -1 + 2
+$$
+Reescribimos esto como una ED completa de 2° orden: $\ddot{x} - \dot{x} = -1$ (ED completa).
+
+(a) La homog\'enea $\ddot{x} - \dot{x} = 0$ con ecuaci\'on caracter\'istica $\lambda^2 - \lambda = 0$ con espectro $\gamma = \lbrace \lambda_1 = 0, \lambda_2 = -1 \rbrace$ soluci\'on $x_h(t) = c_1 + c_2 e^t$.
+
+(b) Ac\'a tenemos que tener cuidado con el grado del polinomio, hay que fijarse en el espectro. Soluci\'on particular $x_p(t) = k_1t$. $$0 - k_1 = -1 \rightarrow k_1 = 1$$ Luego $x_p(t) = t$.
+
+(c) Soluci\'on general $x(t) = c_1 + c_2e^t + t$.
+
+Ahora $y(t) = 2c_1 + 2c_2 e^t + 2t - (c_2 e^t + 1) + 1 = 2c_1 +c_2 e^t + 2t$. Luego, la soluci\'on es
+
+\begin{equation}
+\begin{cases}
+	x(t) = c_1 + c_2 e^t + t \\
+	y(t) = 2c_1 + c_2 e^t + 2t
+\end{cases}
+\end{equation}
+
+Aplicamos CI
+
+\begin{equation}
+\begin{cases}
+	c_1 + c_2 = 2 \\
+	2c_1 + c_2 = 2
+\end{cases}
+\end{equation}
+
+Entonces $c_1 = 0$ y $c_2 = 2$. La \'unica soluci\'on es
+
+\begin{equation}
+\begin{cases}
+	x(t) = 2e^t + t \\
+	y(t) = 2e^t + 2t
+\end{cases}
+\end{equation}
+
+\end{exercise}
+
+\begin{exercise}
+
+(Ejercicio de parcial)
+
+$\ddot{x} - 4\dot{x} + 3x = 5 - 8t + 3t^2$, $x(0) = 1$, $\dot{x}(0) = 0$.
+
+(a) La homog\'enea $\ddot{x} - 4\dot{x} + 3x = 0$ con ecuaci\'on caracter\'istica $\lambda^2 - 4\lambda + 3 = 0$ con espectro $\gamma = \lbrace \lambda_1 = 1, \lambda_2 = 3 \rbrace$.
+$$
+x_h(t) = c_1e^t + c_2e^{3t}
+$$
+
+(b) Soluci\'on particular $x_p(t) = k_1 + k_2t + k_3 t^3$ con $k_1$, $k_2$, $k_3$ tales que $2k_3 = \ddot{x}$, $\dot{x} = k_2 - 2k_3$, entonces
+$$
+2k_3 - 4k_2 - 8k_3 t + 3k_1 + 3k_2 t + 3k_3 t^2 = 5 - 8t + 3t^2
+$$
+
+\begin{equation}
+\begin{cases}
+	2k_3 - 4k_2 + 3k_1 &= 5 \\
+	-8k_3 - 4k_2 &= -8 \\
+	3k_3 &= 3
+\end{cases}
+\end{equation}
+
+Entonces $k_3 = 1$, $k_2 = 0$ y $k_1 = 1$.
+
+La soluci\'on general es $x: \mathbb{R} \rightarrow \mathbb{R}$ tal que $x(t) = c_1e^t + c_2e^{3t} + 1 + t^2$, ahora, imponemos las CI. Nos queda que $c_1 = c_2 = 0$. Finalmente, la \'unica soluci\'on es $x(t) = t^2 + 1$.
+ 
+\end{exercise}
+
+\begin{exercise}
+
+(Ejercicio de parcial que quiz\'as est\'a en la gu\'ia)
+
+Familia de curvas.
+
+$x^2 + y^2 = 2cx$, $P_0 = (0,2)$.
+
+\emph{Respuesta}
+
+Completamos cuadrados.
+
+$$
+x^2 -2cx + y^2 = 0
+$$
+
+$$
+(x-c)^2 + y^2 = c^2
+$$
+
+Cuando graficamos nos damos cuenta que son c\'irculos cnetrados en 0, y desplazados lo mismo que sus radios. %Colocar gr\'afico de varios c\'irculos.
+
+(1) Derivamos y eliminamos $c$.
+
+\begin{equation}
+\begin{cases}
+	x^2 + y^2 = 2cx \\
+	2x + 2yy^{\prime} = 2c
+\end{cases}
+\end{equation}
+
+Eliminando $c$
+
+$$
+x^2 + y^2 = (2x + 2yy^{\prime})x
+$$
+
+O bien $-x^2 + y^2 = 2xyy^{\prime}$
+
+(2) Ahora pasamos a la ED de las trayectorias ortogonales.
+
+$$
+-x^2 + y^2 = \frac{2xy}{y^{\prime}}
+$$
+
+O bien 
+
+$$
+(-x^2 + y^2)y^{\prime} = -2xy
+$$
+
+(3) Resolvemos (2) $2xydx + (-x^2 + y^2)dy = 0$ es exacta (NO). ¿Es reducible a exacta? SI.
+Nos queda algo como sigue:
+$$
+x^2 + (y - k)^2 = k^2
+$$
+Con $k = 1$, $x^2 + (y - 1)^2 = 1$.
 
 \end{exercise}

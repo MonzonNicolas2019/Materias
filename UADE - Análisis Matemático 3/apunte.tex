@@ -29,6 +29,7 @@
 \usepackage{anyfontsize}% permite tamaño de fuentes arbitrarios
 \usepackage{tikz, pgfplots}
 \pgfplotsset{compat=newest}
+\usepackage{hyperref}
 
 % automatic math mode, centered
 \newcolumntype{C}{>{$}c<{$}}
@@ -96,11 +97,11 @@
 
 %Para que el primer parrafo de un cap\'itulo tenga identado.
 \usepackage{indentfirst}
-\setlength{\parindent}{36pt} %Tamaño de la identaci\'on.
+\setlength{\parindent}{12pt} %Tamaño de la identaci\'on.
 
 %Seccionado. El par\'ametro left incrementa el margen, lo setteo en 0.
 %\titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
-\titlespacing{\section}{0pt}{12pt}{6pt}
+\titlespacing{\section}{0pt}{20pt}{20pt}
 %\titlespacing{\subsection}{0pt}{*0}{*0}
 %\titlespacing{\subsubsection}{0pt}{*0}{*0}
 
@@ -132,6 +133,10 @@
   {}{}
   
 \usepgfplotslibrary{patchplots}
+
+\pgfplotsset{compat=1.10}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns}
 
 \begin{document}
 
