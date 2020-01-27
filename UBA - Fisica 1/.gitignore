@@ -1,0 +1,13 @@
+**/*.aux
+**/*.bcf
+**/*.bbl
+**/*.blg
+**/*.lof
+**/*.log
+**/*.lot
+**/*.out
+**/*.pdf
+**/*.run.xml
+**/*.spl
+**/*.toc
+**/*.log
