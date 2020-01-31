@@ -26,15 +26,26 @@
 \usepackage{wrapfig}
 \usepackage{commath}
 \usepackage{MnSymbol}
-\usepackage{anyfontsize}% permite tamaño de fuentes arbitrarios
+\usepackage{anyfontsize} % permite tamaño de fuentes arbitrarios
 \usepackage{tikz, pgfplots}
 \pgfplotsset{compat=newest}
 \usepackage{hyperref}
+
+\usepackage{physics} %Para las derivadas
 
 % automatic math mode, centered
 \newcolumntype{C}{>{$}c<{$}}
 \newcolumntype{R}{>{$}r<{$}}
 \newcolumntype{L}{>{$}l<{$}}
+
+\usepackage{mleftright} %Para un mejor ajuste en los logaritmos
+\newcommand{\lnn}[1]{
+  \ln\left(#1\right)
+}
+
+\newcommand{\lnb}[1]{
+  \ln\mleft(#1\mright)
+}
 
 \newtheorem{theorem}{Teorema}[section]
 \newtheorem{lemma}[theorem]{Lema}
@@ -167,7 +178,11 @@ Los trabajos pr\'acticos son los dados en la materia, no hay ning\'un ejercicio 
 \tableofcontents
 
 \chapter{Cinem\'atica}
-\input{guide_1/exercise_01}
+\begin{enumerate}
+	\item \input{guide_1/exercise_01}
+	\item \input{guide_1/exercise_02}
+	\item \input{guide_1/exercise_03}
+\end{enumerate}
 
 %\appendix
 %\chapter{Tabla de integrales}

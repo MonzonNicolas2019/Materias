@@ -1,0 +1,127 @@
+\begin{enumerate}
+
+\item
+
+	Buscamos $x(t)$:
+	
+	$$ a = \dv{v}{t} = kt^2 $$
+	$$ \dv{v}{t} = kt^2 $$
+	$$ dv = kt^2 dt $$
+	$$ \int \! \, dv = \int \! kt^2 \, dt $$
+	$$ v + c_1 = \frac{kt^3}{3} + c_2 $$
+	
+	Con $c_2 - c_1 = c_3$, y adem\'as, sabiendo que $v(t_0) = v_0$, entonces $v_0 = 0 + c_3$, entonces $c_3 = v_0$. Nos queda:
+	
+	$$ v = \frac{kt^3}{3} + v_0 $$
+	$$ \dv{x}{t} = \frac{kt^3}{3} + v_0 $$
+	$$ dx = \frac{kt^3}{3} + v_0 dt $$
+	$$ \int \! \, dx = \int \! \frac{kt^3}{3} + v_0 \, dt $$
+	$$ x + c_4 = \frac{kt^4}{12} + v_0t + c_5$$
+	
+	Con $c_5 - c_4 = c_6$, y adem\'as, sabiendo que $x(t_0) = 0$, entonces $0 = 0 + c_6$, y se tiene $c_6 = 0$. Nos queda:
+	
+	$$ x = \frac{kt^4}{12} + v_0t$$
+	
+	Buscamos $x(v)$. Para esto, $x$ no debe depender del $t$, dado que sino depender\'ia de dos variables ($x(v,t)$). Entonces:
+	
+	$$ x = \left(\frac{kt^3}{12} + v_0 \right)t $$
+	
+	Pero adem\'as, de la velocidad tenemos que:
+	
+	$$ t = \sqrt[3]{\left( v - v_0 \right)\frac{3}{k}} $$
+	
+	Entonces
+	
+	$$ x = \frac{v - 3v_0}{4} \sqrt[3]{\left( v - v_0 \right)\frac{3}{k}} $$
+
+\item
+
+	Buscamos $x(t)$:
+	
+	$$ a = \dv{v}{t} = -kv^2 $$
+	
+	Pero si lo dejamos as\'i, agregar\'iamos la variable $t$, y esto es agregar informaci\'on innecesaria. Entonces:
+	
+	$$ a = \dv{v}{t} = -k\dv{x}{t}v $$
+	$$ dv = -kvdx $$
+	$$ \frac{1}{v}dv = -kdx $$
+	$$ \int \! \frac{1}{v} \, dv = - \int \! k \, dx $$
+	$$ \ln\left| v \right| + c_1 = -kx + c_2 $$
+	
+	Con $c_2 - c_1 = c_3$:
+	
+	$$ \ln\left| v \right| = -kx + c_3 $$
+
+	Como el intervalo analizado es positivo para $v(t)$ (por $t > 0$),	
+	
+	$$ \ln v = -kx + c_3 $$
+	$$ v = e^{-kx + c_3} $$
+	
+	Por las condiciones iniciales (en lo que sigue, \emph{CI}), $ v(t = 0) = e^{-kx(t = 0) + c_3} $ y entonces
+	$ v_0 = e^{c_3} $. Despejando se tiene $c_3 = \ln v_0 $. Entonces
+	
+	$$ v = e^{-kx + \ln v_0 } $$
+	$$ \dv{x}{t} = e^{-kx + \ln v_0 } $$
+	$$ dx = e^{-kx + \ln v_0 }dt $$
+	$$ e^{kx} dx = e^{\ln v_0 }dt $$
+	$$ e^{kx} dx = v_0 dt $$
+	$$ \int \! e^{kx} \, dx = \int \! v_0 \, dt $$
+	$$ \frac{1}{k}e^{kx} + c_4 = v_0t + c_5 $$
+	$$ e^{kx} = v_0kt + \left(c_5 - c_4\right)k $$
+	
+	Con $\left(c_5 - c_4\right)k = c_6$, y adem\'as, sabiendo que $x(t_0) = 0$, entonces $c_6 = 1$. Nos queda:
+	
+	$$ e^{kx} = v_0kt + 1 $$
+	$$ kx = \lnb{v_0kt + 1} $$
+	$$ x(t) = \frac{1}{k} \lnb{v_0kt + 1} $$
+	
+	Buscamos $x(t)$. Anteriormente encontramos el siguiente resultado:
+	
+	$$ v = e^{-kx + \ln v_0 } $$
+	$$ \ln v = -kx + \ln v_0 $$
+	$$ \ln v_0 - \ln v = kx $$
+	$$ x(v) = \frac{\lnb{\frac{v_0}{v}}}{k} $$
+	
+\item
+
+	Buscamos $x(t)$. Procediendo de forma an\'aloga:
+	
+	$$ \dv{v}{t} = k\dv{x}{t}x $$
+	$$ dv = kx dx $$
+	$$ \int \! \, dv = \int \! kx \, dx $$
+	$$ v + c_1 = \frac{kx^2}{2} + c_2 $$
+	$$ v = \frac{kx^2}{2} + v_0 $$
+	$$ \dv{x}{t} = \frac{kx^2}{2} + v_0 $$
+	$$ dx = \frac{kx^2 + 2v_0}{2}dt$$
+
+	Con $v_0 \neq 0$	
+	
+	$$ \frac{2}{kx^2 + 2v_0}dx = dt$$
+	$$ \frac{2}{2v_0} \int \! \frac{1}{\frac{kx^2}{2v_0} + 1} \, dx = \int \! \, dt$$
+
+	Haciendo el siguiente cambio de variables, con $u = \frac{\sqrt{k}x}{\sqrt{2v_0}}$, 
+	entonces $du = \sqrt{\frac{k}{2v_0}}$. Dado que $du$ es constante, el c\'alculo se vuelve sencillo:
+	
+	$$ \frac{1}{v_0} \sqrt{\frac{2v_0}{k}} \int \! \frac{1}{u^2 + 1} \, du = t + c_3 $$
+	$$ \sqrt{\frac{2}{kv_0}} \arctan u = t + c_3 $$
+	
+	Y a $t = 0$ nos queda $c_3 = 0$, entonces
+	
+	$$ \sqrt{\frac{2}{kv_0}} \arctan \frac{\sqrt{k}x}{\sqrt{2v_0}} = t + c_3 $$
+	
+	Despejando:
+	
+	$$ x(t) = \tan{\sqrt{\frac{kv_0}{2}}t}\sqrt{\frac{2v_0}{k}}$$
+	
+	Buscamos $x(v)$. Partiendo de lo ya obtenido anteriormente:
+	
+	$$ v = \frac{kx^2}{2} + v_0 $$
+	$$ v - v_0 = \frac{kx^2}{2} $$
+	$$ \frac{2\left(v - v_0\right)}{k} = x^2 $$
+	$$ \pm \sqrt{\frac{2\left(v - v_0\right)}{k}} = x $$
+	
+	Dado que $x$ es siempre positiva:
+	
+	$$ x(v) = \sqrt{\frac{2\left(v - v_0\right)}{k}}$$
+
+\end{enumerate}
