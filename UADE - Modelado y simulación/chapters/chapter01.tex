@@ -1,0 +1,194 @@
+\section{PVI - Problema del Valor Inicial}
+
+$$ \dv{x}{t} = f(t,x), x(t_0) = x_0 $$
+
+input: $ f(t,x), t_0, x_0 $
+output: $ x(t) $, la soluci\'on y sus gr\'aficos
+
+%Grafico 1
+
+Ejemplo.
+
+$$ \dv{x}{t} = f(t,x) = 2t, x(0) = 0 $$
+
+Entonces
+
+$$ x(t) = t^2 + C $$
+Por CI (Condiciones Iniciales)
+
+$$ 0 = 0^2 + C \rightarrow 0 = C $$
+
+Finalmente la soluci\'on
+
+$$ x(t) = t^2 $$
+
+%Grafico de x(t)
+
+Para resolver este problema tenemos diferentes m\'etodos (solo se ver\'an 3):
+
+\begin{itemize}
+	\item Euler
+	\item Euler mejorado
+	\item Runge-Kutta
+
+\end{itemize}
+
+\section{Euler}
+
+Se busca una aproximaci\'on num\'erica a la soluci\'on en un \emph{intervalo}. El usuario que visualiza el gr\'afico no podr\'a ver la soluci\'on hasta el infinito. Para el usuario tendremos un punto $T$ que indicar\'a hasta donde graficaremos, el cual ser\'a dado por el usuario.
+
+Se efect\'ua una partici\'on de $N+1$ puntos (y entonces de $N$ intervalos) equidistantes. Esto se resuelve entre $t_0$ y $T$ (son datos). La distancia entre cada punto se denomina $h$. Los puntos se denominan $t_k$.
+
+%Grafico 2
+
+$$ t_k = t_0 +kh, k = 0,1,2,\dotsc,N $$
+
+Con $h = \frac{T - t_0}{N}$, $t_N = T$
+
+Gracias a esta relaci\'on, pueden darnos $h$ o $N$, pero no los dos. Es decir $T\left(N \text{ o } h\right)$
+
+¿Qu\'e valores asignamos a cada uno de los puntos $t_0, t_1, \dotsc T$? Les asignamos valores $u_k$, no llamados $x_k$ porque no son la soluci\'on exacta.
+
+Tomamos en un punto $t_0$ la pendiente, y graficaremos una semirrecta desde $(x_0,t_0)$ con pendiente calculada de la funci\'on en ese punto, hasta $t_1$, que no necesariamente dar\'a $x_1$, sino que dar\'a un valor $u_1$ y desde all\'i continuaremos aplicando el m\'etodo.
+
+%Grafico 3
+
+%Grafico 4
+
+$$ u_1 = u_0 + h f(t_0,x_0)$$
+$$ u_2 = u_1 + h f(t_1,x_1)$$
+$$ \dotsc $$
+$$ u_{h+1} = u_k + h f(t_k,x_k), k = 0,1,\dotsc, N$$
+Con $u_0 = x_0$ (conocido).
+
+%Grafico 5 - La linea azul (x) se ira pegando a la roja (u) mientras mas chico es h, pero si el valor de h es muy chico los valores de redondeo de la computadora empieza a jugar en contra.
+
+Cuando hagamos el programa, $x_0$ ser\'a un par\'ametro, para poder tenerlo variable.
+
+\begin{example}
+
+Resolvemos $\dv{x}{t} = f(x,t) = 2t, x(0) = 0, 0\leq t \leq 1, h = 0.25$.
+
+$$t_k = 0.25k, k = 0,1,2,3,4$$
+
+\begin{table}[]
+\begin{tabular}{lllll}
+$k$ & $t_k$ & $u_k = u_0 + 0.25(2t_{k-1})$ & $x$    & ERROR  \\
+0   & 0     & 0                            & 0      & 0      \\
+1   & 0.25  & 0                            & 0.0625 & 0.0625 \\
+2   & 0.5   & 0.1250                       & 0.2500 & 0.1250 \\
+3   & 0.75  & 0.3750                       & 0.5625 & 0.1875 \\
+4   & 1     & 0.7500                       & 1      & 0.2500
+\end{tabular}
+\end{table}
+
+Donde $x$ es la soluci\'on exacta, y en general, inaccesible.
+
+%Grafico 6
+
+\end{example}
+
+En el Euler mejorado, tambien llamado \emph{predictor, corrector}, en lugar de viajar por la tangente izquierda, viaja por una recta que es una ensalada de pendientes. Es un m\'etodo de dos pasos, mas lento pero m\'as preciso que el anterior.
+
+\section{Predictor, corrector}
+
+Predictor: Dice cual ser\'a el valor de $u$.
+
+$$u_{k+1} = u_k + h f(t_k, u_k)$$
+
+Corrector:
+
+$$u_{k+1} = u_k + \frac{h}{2} \left[f(t_k, u_k) + f(t_{k+1}, u_{k+1})\right]$$
+
+El valor de $f(t_{k+1}, u_{k+1})$ lo usamos del Predictor, dado que en realidad es lo que tratamos de calcular.
+
+%Grafico 7 - El Rojo es el promedio de los verdes
+
+\section{Runge-Kutta}
+
+Es hacer una ensalada con cada vez m\'as pendientes.
+
+$$u_{k+1} = u_k + \frac{1}{6}(\alpha_1 + 2\alpha_2 + 2\alpha_3 + \alpha_4)$$
+$$ \alpha_1 = h f(t_k, u_k) $$
+$$ \alpha_2 = h f(t_k + \frac{1}{2}, \alpha_1) $$
+$$ \dotsc $$
+
+\emph{Observaci\'on}: Euler mejorado avanza un paso con dos c\'alculos, Runge-Kutta 4 c\'alculos. Entonces, para un mismo $h$, Runge-Kutta es 4 veces m\'as lento que el m\'etodo de Euler. Sin embargo, el orden de precisi\'on de Runge-Kutta es $\mathcal{O}(h^4)$. Lo que significa que el orden de precisi\'on se acota exponencialmente con el valor de $h$ (para Euler $\mathcal{O}(h)$ y Euler Mejorado $\mathcal{O}(h^2)$).
+
+
+
+\section{Integraci\'on num\'erica}
+
+%Lo anterior fue diferenciaci\'on num\'erica. A partir de ahora se termina el probelam del PVI.
+
+%Grafico 8
+
+output: $ \int_a^b\! f(x) \, dx $
+
+Ejemplo: Para $f(x) = 2x, a = 0, b = 1$
+
+%Grafico 9
+
+$$ \int_0^1\! 2x \, dx = x^2\|^1_0 = 1$$
+
+Tenemos varios m\'etodos:
+
+\begin{itemize}
+
+	\item Rect\'angulos
+	\item Trapecios
+	\item Simpson
+	\item Montecarlo
+
+\end{itemize}
+
+\section{M\'etodo del trapecio}
+
+%Grafico 10
+
+$$ x_{k+1} = a +kh, k = 0,1,\dotsc, N-1$$
+Siendo $x_0 = a$, $x_N = b$. $$N = \frac{b-a}{h}$$
+
+Por definici\'on, consideramos $f_k = f(x_k)$.
+
+$$ \int_{x_k}^{x_{k+1}}\! f(x) \, dx \approx \frac{h}{2}(f_k + f_{k+1}) $$
+
+Sale de
+
+$$ f_{k}h + \frac{(f_{k+1} - f_k)h}{2} = \frac{h}{2}(f_k + f_{k+1}) $$
+
+Que es la f\'ormula de un trapecio. Siguiendo,
+
+$$ 
+\int_a^b\! f(x) \, dx = 
+\sum_{k = 0}^{N-1} \int_{x_{k}}^{x_{k+1}}\! f(x) \, dx \approx 
+\sum_{k = 0}^{N-1} \frac{h}{2}(f_k + f_{k+1}) = 
+$$
+$$
+\frac{h}{2}\left[ (f_0 + f_1) + (f_1 + f_2) + \dotsc \right] =
+$$
+$$
+\frac{h}{2}\left[ f_0 + f_N + 2\sum_{k = 1}^{N-1}f_k \right] =
+$$
+
+\section{M\'etodo Montecarlo}
+
+%Grafico 11
+
+Grosor de la caja es $b - a$.
+
+$$\int_0^1 \! x^2 \, dx = \frac{1}{3}$$
+
+%Grafico 12
+
+La idea es disparar puntos sobre la caja y fijarnos cuantos puntos caen sobre el gr\'afico. Lo que devuelve este metodo es una alta probabilidad del valor que dado. El resultado es $\frac{n}{N}$ con $n$ los puntos que caen dentro de la figura y $N$ los totales.
+
+Los puntos que en el eje vertical queden por debajo del horizontal, se restan.
+
+input: $f(x) = x^2$, $x_k = a + kh$, $k = 0,\dotsc, N$, $x_N = b$.
+
+El $N$ debe ser dado por nosotros, no por el usuario, usar un $N$ grande. Calcular el $\text{min} f$ y $\text{max} f$ para obtener detalles del tamaño de la caja. Consideramos $h$ como la altura de la caja. En el caso de que una parte de la caja sea negativa, es decir, que sea para realizar una resta, entonces llamos $h_1$ a la parte superior y $h_2$ a la parte inferior.
+
+Se omite la explicaci\'on de como encontrar un $N$ adecuado para cierta probabilidad.
+
+%Añadir a la bibliograf\'ia el libro de Hale, Jack

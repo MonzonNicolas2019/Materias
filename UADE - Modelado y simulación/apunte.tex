@@ -1,0 +1,195 @@
+\documentclass[a4paper, 12pt, oneside, titlepage, openany]{book}
+
+\usepackage{titlesec} %Para el seccionado, debe colocarse al principio este package.
+
+%Interlineado de todo el documento a 1.5
+\usepackage{setspace}
+%\spacing{1.5} ir\'a en diferentes secciones
+
+\usepackage{color,soulutf8}
+\usepackage{float}
+\floatstyle{boxed}
+\restylefloat{table}
+\restylefloat{figure}
+\usepackage[section,above,below]{placeins}
+\usepackage{microtype}
+\usepackage{amsmath,amsfonts,amssymb}
+\allowdisplaybreaks
+\usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+\usepackage[braket]{qcircuit}
+\usepackage{proof}
+\usepackage{tikz}
+\usepackage{multicol,multirow}
+\usepackage{graphicx}
+\usepackage{array,longtable}
+\usepackage{wrapfig}
+\usepackage{commath}
+\usepackage{MnSymbol}
+\usepackage{anyfontsize}% permite tamaño de fuentes arbitrarios
+\usepackage{tikz, pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{hyperref}
+
+\usepackage{physics} %Para las derivadas
+
+% automatic math mode, centered
+\newcolumntype{C}{>{$}c<{$}}
+\newcolumntype{R}{>{$}r<{$}}
+\newcolumntype{L}{>{$}l<{$}}
+
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{corollary}[theorem]{Colorario}
+\newtheorem{proposition}[theorem]{Proposicion}
+
+\newenvironment{definition}[1][Definici\'on]{\begin{trivlist}
+%Como en el libro de Tromba, an\'alisis Matem\'atico. En negrita y sin enumeraci\'on:
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}} 
+\newenvironment{exercise}[1][Ejercicio]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}} 
+\newenvironment{proof}[1][Demostraci\'on]{\begin{trivlist}
+\item[\hskip \labelsep {\itshape #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Ejemplo]{\begin{trivlist}
+\item[\hskip \labelsep {\itshape #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Comentario]{\begin{trivlist}
+\item[\hskip \labelsep {\itshape #1}]}{\end{trivlist}}
+
+\usepackage{lastpage}
+\usepackage{titleps}
+
+\newpagestyle{ruled}
+%En los tres corchetes, para izq, centro, der, paginas pares. En llaves, paginas impares.
+%Solo llaves es para ambas paginas.
+	{   
+   %\sethead{\includegraphics[width=3.7cm]{./images/UADE_LARGE}}{\Title}{\Author}\headrule
+	\sethead{\includegraphics[width=3.7cm]{./images/UADE_LARGE}}
+			{\parbox[b]{0.43\textwidth}{\centering MODELADO Y SIMULACI\'ON}} %b es para poner texto sobre el bottom
+			{Nicolás Alberto Monzón}\headrule
+	\setfoot[][][P\'agina \thepage\ de \pageref{LastPage}]{}{}{P\'agina \thepage\ de \pageref{LastPage}}\footrule
+	}
+	\pagestyle{ruled}
+%Cambiar el color de la linea divisora:
+%\renewcommand\makeheadrule{\color{cyan}\rule[-.3\baselineskip]{\linewidth}{0.4pt}}
+%\renewcommand\makefootrule{\color{cyan}\rule[\baselineskip]{\linewidth}{0.4pt}}
+
+%M\'argenes
+\usepackage{vmargin}
+%\setmarginsrb{leftmargin}{topmargin}{rightmargin}{bottommargin}%
+%         {headheight}{headsep}{footheight}{footskip}           %
+%Lo ideal ser\'ia lo siguiente
+%\setmarginsrb{2.7cm}{4cm}{2.3cm}{2.5cm}{2cm}{0.5cm}{2cm}{0.5cm}
+%Pero estos valores se suman, por lo que en realidad ir\'ia asi:
+\setmarginsrb{2.7cm}{2cm}{2.3cm}{1.5cm}{0cm}{2cm}{0cm}{1cm}
+
+%M\'argenes, pero otra opci\'on mas acotada
+%\usepackage[top=4cm,bottom=2.5cm,left=2.7cm,right=2.3cm]{geometry}
+
+%Se decidi\'0 no usar Babel, para no romper con otros paquetes sólo para unas pocas traducciones
+%Nombre de cap\'itulos
+\renewcommand{\chaptername}{Cap\'itulo} %Falta verificar si es correcto que esto se vea.
+\renewcommand{\bibname}{Bibliograf\'ia}
+\renewcommand{\contentsname}{\'Indice}
+\renewcommand{\listfigurename}{Lista de Figuras}
+\renewcommand{\listtablename}{Lista de Tablas}
+\renewcommand{\appendixname}{Ap\'endice}
+%\renewcommand\appendixpagename{Ap\'endice}
+\renewcommand\tablename{Tabla}
+\renewcommand{\figurename}{Figura}
+
+%Para que el primer parrafo de un cap\'itulo tenga identado.
+\usepackage{indentfirst}
+\setlength{\parindent}{12pt} %Tamaño de la identaci\'on.
+
+%Seccionado. El par\'ametro left incrementa el margen, lo setteo en 0.
+%\titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+\titlespacing{\section}{0pt}{20pt}{20pt}
+%\titlespacing{\subsection}{0pt}{*0}{*0}
+%\titlespacing{\subsubsection}{0pt}{*0}{*0}
+
+%Tamaño de letra de cap\'itulo y secciones
+\newcommand{\chapfnt}{\fontsize{16}{19}}
+\newcommand{\secfnt}{\fontsize{14}{17}}
+%\newcommand{\ssecfnt}{\fontsize{12}{14}}
+\titleformat{\chapter}[display]
+{\normalfont\chapfnt\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\chapfnt}
+\titleformat{\section}
+{\normalfont\secfnt\bfseries}{\thesection}{1em}{}
+%\titleformat{\subsection}
+%{\normalfont\ssecfnt\bfseries}{\thesubsection}{1em}{}
+
+%Se pide numeraci\'on de tablas en n\'umeros romanos
+\renewcommand{\thetable}{\Roman{table}}
+
+%Espaciado antes y despu\'es de una figura respecto del texto
+\setlength{\textfloatsep}{5pt}
+
+%Espaciado entre referencias en la bibliograf\'ia
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}
+  {\settowidth}
+  {\setlength{\itemsep}{6pt}\settowidth}
+  {}{}
+\apptocmd{\thebibliography}
+  {\small}
+  {}{}
+  
+\usepgfplotslibrary{patchplots}
+
+\pgfplotsset{compat=1.10}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns}
+
+\begin{document}
+
+%\maketitle
+
+\begin{titlepage}
+
+	\centering
+	%\fontsize{<size>}{<bskip>}
+	{\textbf{\fontsize{16}{17}\selectfont MODELADO Y SIMULACI\'ON} \par}
+	\vspace{1cm}
+	{\textbf{\fontsize{16}{17}\selectfont Monz\'on, Nicol\'as Alberto - LU 1070224} \par}
+	\vspace{1.5cm}
+	{\fontsize{16}{17}\selectfont Ingenier\'ia en Inform\'atica \par}
+	\vspace{1cm}
+	{\textbf{\fontsize{14}{14}\selectfont Profesor:} \par}
+	{\fontsize{14}{14}\selectfont Acero, Fernando Rodolfo (facero@uade.edu.ar)
+	\par}
+	\vspace{1cm}
+	{\textbf{\fontsize{14}{14}\selectfont Ayudante de 1ra:} \par}
+	{\fontsize{14}{14}\selectfont -
+	\par}
+	\vfill
+		v1.0.0
+	\vfill
+	\includegraphics[width=0.30\textwidth]{./images/UADE}\par \vspace{1cm}
+	{\textbf{\fontsize{14}{14}\selectfont UNIVERSIDAD ARGENTINA DE LA EMPRESA} \par}
+	{\fontsize{14}{14}\selectfont FACULTAD DE INGENIER\'IA Y CIENCIAS EXACTAS \par}
+
+\end{titlepage}
+
+\chapter*{Notas Preliminares}
+Los trabajos pr\'acticos son los dados en la materia, no hay ning\'un ejercicio propio propuesto dentro de los resueltos.
+
+\tableofcontents
+
+\chapter{Integrales curvil\'ineas}
+\input{chapters/chapter01}
+
+\appendix
+\chapter{Tabla de integrales}
+\input{chapters/appendixA}
+
+\bibliography{biblio}
+\addcontentsline{toc}{chapter}{Bibliograf\'ia}
+%Las opciones de estilo mencionadas en ISO 690-2 son las siguientes.
+%abntex2-num.bst
+%El resto son incompatibles.
+\bibliographystyle{iso690}
+
+\listoffigures
+\listoftables
+
+\end{document}
