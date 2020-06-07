@@ -1,0 +1,13 @@
+-          Leithold, Louis. El Cálculo. Oxford University.
+
+-          Stewart, James. Cálculo multivariable. International Thompson Editores.
+
+-          Edwards, Jr. C. H.; Penney, D. Cálculo con Geometría Analítica. Prentice Hall   Hispanoamericana.
+
+-          Blanchard, P.; Devaney, R.; Hall, G. Ecuaciones Diferenciales. International Thompson Editores.
+
+-          Campbell, S.; Haberman, R. Introducción a las ecuaciones diferenciales con problemas de valor de frontera. Mc Graw Hill.
+
+-          Pita Ruiz, Claudio. Cálculo vectorial. Prentice Hall   Hispanoamericana.
+
+-          Kreyszig, E. Matemáticas Avanzadas para Ingeniería. Limusa Wiley.

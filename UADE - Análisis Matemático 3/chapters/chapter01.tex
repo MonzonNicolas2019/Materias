@@ -155,3 +155,52 @@ En este caso, no existe el \'area de la regi\'on de esos requisitos, dado que lo
 \end{itemize}
 
 \end{exercise}
+
+\begin{exercise}
+
+(2a) 
+
+$$ \int_0^1 \int_{x-1}^{-x^2 + 2} \! f(x,y) \, dydx $$
+
+Considero
+
+$$ H(x) = \int_{x-1}^{-x^2 + 2} \! f(x,y) \, dy $$
+Se tiene $ x - 1 \leq y \leq -x^2 + 2 $ y $ 0 \leq x \leq 1 $
+
+%Grafico F1
+
+Con $R = R_1 + R_2 + R_3 $. Despejo $x$ de $y = -x^2 + 2$. Tenemos $x = \sqrt{2-y}$. Solo nos quedamos con los $x$ positivos porque son los que necesitamos. En otros casos deber\'ia ser $\left|x\right| = \sqrt{2-y}$
+ 
+$$ I_{R_1} = \int_1^2 \int_0^{\sqrt{2-y}} \! f(x,y) \, dx dy$$
+
+Es decir, $x$ esta limitada por una recta $x = 0$ y la funci\'on $x = \sqrt{2-y}$ (observar que nos desplazamos de izquierda a derecha y los valores que no sean correspondidos no ser\'an tenidos en cuenta).
+
+$$ I_{R_2} = \int_0^1 \int_0^1 \! f(x,y) \, dx dy$$
+
+$$ I_{R_3} = \int_0^1 \int_0^{y+1} \! f(x,y) \, dx dy$$
+
+\end{exercise}
+
+\begin{exercise}
+
+(2b) 
+
+$$ \int_0^1 \int_{-1+\sqrt{1-x^2}}^{1-\sqrt{1-x^2}} \! f(x,y) \, dydx $$
+
+Con condiciones $ -1+\sqrt{1-x^2} \leq y \leq 1-\sqrt{1-x^2} $ y $ 0 \leq x \leq 1 $
+
+Puede reescribir $y = 1-\sqrt{1-x^2}$ como $x^2 + (y-1)^2 = 1^2$. Es decir, tenemos una circunferencia con centro en $(0,1)$. Analogamente, para $y = -1+\sqrt{1-x^2}$ nos queda una circunferencia centrada en $(0,-1)$.
+
+%Grafico F2.
+
+Dividimos $R$ en dos partes, con $y$ positivo ser\'a $R_1$ y con $y$ negativo ser\'a $R_2$.
+
+Despejamos $x$ de $x^2 + (y-1)^2 = 1^2$ y nos queda $x = \sqrt{1 - (y-1)^2}$. Nos quedamos solo con los valores positivos de $x$, por eso no consideramos los casos tales que $x = -\sqrt{1 - (y-1)^2}$.
+
+$$ I_{R_1} = \int_0^1 \int_{\sqrt{1 - (y-1)^2}}^1 \! f(x,y) \, dx dy $$
+
+$$ I_{R_2} = \int_{-1}^0 \int_{\sqrt{1 - (y+1)^2}}^1 \! f(x,y) \, dx dy $$
+
+Con $I = I_{R_1} +I_{R_2} $
+
+\end{exercise}
